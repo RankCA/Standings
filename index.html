@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live football standings</title>
+  <meta name="description" content="Live league tables for the Premier League, Championship, LALIGA, Ligue 1, Bundesliga, Serie A, Champions League, Europa League and Conference League.">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c4b3d'/%3E%3Cpath d='M8 10h16M8 16h16M8 22h10' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://assets.footylogos.com" crossorigin>
+  <link rel="preconnect" href="https://site.api.espn.com" crossorigin>
+  <!-- DM Sans is the base face (as on footylogos.com); the rest only download once "Themed" is on. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Rubik:wght@500;700;900&family=Barlow:wght@500;600;700;800&family=Archivo:wdth,wght@100,600;100,800;125,800&family=Saira:wght@500;600;700;800&family=Roboto+Condensed:wght@500;700;800&family=Montserrat:wght@500;600;700;800&family=Exo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&family=Chakra+Petch:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body data-comp="home">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" data-view="home" aria-label="Standings home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="7" fill="currentColor" class="mark-bg"/><path d="M8 10h16M8 16h16M8 22h10" stroke="currentColor" class="mark-fg" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-name">Standings</span>
+      </a>
+
+      <p class="header-tagline">Live tables <span class="sep">·</span> nine competitions</p>
+
+      <label class="toggle" for="themed-toggle">
+        <span class="toggle-label">Themed</span>
+        <input type="checkbox" id="themed-toggle" role="switch" aria-checked="false">
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+  </header>
+
+  <nav class="comp-nav-bar" aria-label="Competitions">
+    <div class="comp-nav" id="comp-nav"></div>
+  </nav>
+
+  <main class="shell" id="tables" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Tables, form and fixtures refresh automatically every minute while the page is open (every 30 seconds while a match is in play), and again whenever you come back to the tab. Kick-off times are shown in your local time.</p>
+      <p class="credits">Data <a href="https://www.espn.com/soccer/" rel="noopener" target="_blank">ESPN</a> <span class="sep">·</span> Logos &amp; crests <a href="https://www.footylogos.com/" rel="noopener" target="_blank">FootyLogos</a> <span class="sep">·</span> <kbd>←</kbd> <kbd>→</kbd> switch competition</p>
+    </div>
+  </footer>
+
+  <script src="js/competitions.js"></script>
+  <script src="js/crests.js"></script>
+  <script src="js/fixtures.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
