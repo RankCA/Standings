@@ -1,0 +1,176 @@
+/* Themed mode — each competition re-skinned in its own branding. Colours are taken from the
+   official vector marks (e.g. Premier League #37003c, LALIGA #ff4b44, Bundesliga #d10214,
+   Serie A #1a1659 / #0373ff, Champions League #00004b, Europa League #ff6900, Conference
+   League #00be14, Ligue 1 McDonald's #252525 / #ffbc0d). The leagues' proprietary typefaces
+   aren't freely licensable, so each theme uses the closest Google Fonts equivalent.
+
+   A theme applies to the whole page when that competition is selected
+   (body.themed[data-comp="x"]) and to its own section in the "All tables" view
+   (body.themed [data-comp="x"]). */
+
+body.themed { transition: background-color .35s ease, color .35s ease; }
+body.themed .eyebrow { color: var(--accent); }
+body.themed .toggle-label { color: var(--accent); }
+body.themed .panel { box-shadow: 0 0 0 1px var(--line), 0 12px 32px -20px rgba(0, 0, 0, .55); }
+body.themed .standings th { font-family: var(--font-sans); }
+body.themed .comp-title { font-stretch: var(--display-stretch, 100%); }
+body.themed .status-stale { color: #fbbf24; }
+body.themed .ded { color: #fca5a5; }
+body.themed kbd { color: var(--text); }
+
+/* competition marks on dark/brand backgrounds */
+body.themed .mark-white .logo-light { display: none; }
+body.themed .mark-white .logo-dark { display: block; }
+body.themed .mark-invert img { filter: brightness(0) invert(1); }
+body.themed .mark-chip { background: #fff; border-radius: 4px; padding: 2px; }
+body.themed .head-logo.mark-chip { border-radius: 12px; padding: 10px; }
+body[data-comp="all"].themed .head-logo.mark-chip { padding: 7px; }
+body.themed .pill.is-active .mark-invert img { filter: var(--pill-active-filter, brightness(0) invert(1)); }
+body.themed .crest { filter: drop-shadow(0 0 1px rgba(255, 255, 255, .55)); }
+body.themed [data-comp="laliga"] .crest { filter: none; }
+
+/* "All tables" and Home in themed mode: neutral dark chrome, every competition block wears
+   its own colours */
+body.themed[data-comp="all"], body.themed[data-comp="home"] {
+  --bg: #0b0d0c; --panel: #151817; --panel-strong: #1d2120; --line: #262b29; --line-bright: #343a38;
+  --text: #ffffff; --muted: #aab3af; --muted-2: #7f8985; --accent: #ffffff; --accent-ink: #0b0d0c;
+  --chrome-bg: rgba(11, 13, 12, .96); --chrome-text: #ffffff; --chrome-line: #262b29;
+}
+body.themed[data-comp="all"] .comp {
+  margin-top: 20px; padding: 28px clamp(14px, 3vw, 32px) 24px; border-top: 0; border-radius: 14px;
+  background: var(--bg); color: var(--text);
+}
+body.themed[data-comp="all"] .comp:first-child { margin-top: 24px; }
+body.themed .match-group[data-comp] { background: var(--bg); color: var(--text); box-shadow: 0 0 0 1px var(--line); }
+body.themed .match-group[data-comp] .match-group-head { background: var(--panel-strong); border-color: var(--line); color: var(--text); }
+body.themed .match-group[data-comp] .match-group-head > span { font-family: var(--font-display); font-weight: var(--display-weight); text-transform: var(--display-transform); letter-spacing: 0; font-size: 13px; }
+body.themed .match-group[data-comp] .group-link { color: var(--accent); }
+body.themed .match-group[data-comp] .match { border-color: var(--line); }
+body.themed .match-group[data-comp] .m-time { background: var(--panel-strong); box-shadow: inset 0 0 0 1px var(--line); }
+body.themed .match-group[data-comp="laliga"] .m-team, body.themed .match-group[data-comp="laliga"] .m-score, body.themed .match-group[data-comp="laliga"] .m-time { color: #fff; }
+body.themed .match-group[data-comp="laliga"] { --panel-strong: #ff655f; --line: #ff8a85; --muted: #ffe1df; --muted-2: #ffc4c0; }
+body.themed .match-group[data-comp="laliga"] .crest { filter: none; }
+body.themed .form .f-blank, body.themed .form-empty i { background: var(--panel-strong); box-shadow: inset 0 0 0 1px var(--line-bright); }
+body.themed .form .f-d { background: #6b7280; }
+body.themed .standings tbody tr.is-playing td { background: rgba(255, 255, 255, .06); }
+body.themed .match.is-live { background: rgba(255, 255, 255, .05); }
+body.themed .day-live .day-title { color: #ff6b6b; }
+body.themed .eyebrow-live { color: #ff6b6b; }
+body.themed .m-score.is-live { color: #ff6b6b; }
+
+/* shared dark-surface zone palette; themes below override the headline zone with their accent */
+body.themed[data-comp="premier-league"],   body.themed [data-comp="premier-league"],
+body.themed[data-comp="championship"],     body.themed [data-comp="championship"],
+body.themed[data-comp="ligue-1"],          body.themed [data-comp="ligue-1"],
+body.themed[data-comp="bundesliga"],       body.themed [data-comp="bundesliga"],
+body.themed[data-comp="serie-a"],          body.themed [data-comp="serie-a"],
+body.themed[data-comp="champions-league"], body.themed [data-comp="champions-league"],
+body.themed[data-comp="europa-league"],    body.themed [data-comp="europa-league"],
+body.themed[data-comp="conference-league"],body.themed [data-comp="conference-league"] {
+  color-scheme: dark;
+  --z-ucl: #4ade80; --z-ucl-q: #86efac; --z-uel: #fb923c; --z-uel-q: #fdba74; --z-uecl: #2dd4bf; --z-uecl-q: #99f6e4;
+  --z-promotion: #4ade80; --z-promo-po: #facc15; --z-r16: #4ade80; --z-ko-seeded: #60a5fa; --z-ko-unseeded: #bfdbfe;
+  --z-rel-po: #fca5a5; --z-relegation: #f87171; --z-eliminated: #f87171; --z-other: #9ca3af;
+}
+
+/* ---------------------------------------------------------------- Premier League */
+body.themed[data-comp="premier-league"], body.themed [data-comp="premier-league"] {
+  --bg: #37003c; --panel: #2c0031; --panel-strong: #43094a; --line: #4f1a56; --line-bright: #6a2d72;
+  --text: #ffffff; --muted: #d9c2dd; --muted-2: #a98bb0; --accent: #00ff85; --accent-ink: #37003c;
+  --chrome-bg: rgba(55, 0, 60, .96); --chrome-text: #ffffff; --chrome-line: #4f1a56;
+  --font-display: "Rubik", var(--font-sans); --display-weight: 700; --display-tracking: -0.03em;
+  --z-ucl: #00ff85; --z-uel: #04f5ff; --z-uecl: #963cff; --z-relegation: #e90052; --z-rel-po: #ff7ab0;
+}
+
+/* ---------------------------------------------------------------- EFL Championship */
+body.themed[data-comp="championship"], body.themed [data-comp="championship"] {
+  --bg: #0e132f; --panel: #141a3c; --panel-strong: #1b2350; --line: #27306a; --line-bright: #354087;
+  --text: #ffffff; --muted: #c0c7ea; --muted-2: #8d96c9; --accent: #b69b40; --accent-ink: #0e132f;
+  --chrome-bg: rgba(14, 19, 47, .96); --chrome-text: #ffffff; --chrome-line: #27306a;
+  --font-display: "Barlow", var(--font-sans); --display-weight: 800; --display-tracking: -0.01em; --display-transform: uppercase;
+  --z-promotion: #3ddc84; --z-promo-po: #b69b40; --z-relegation: #d42321;
+}
+
+/* ---------------------------------------------------------------- LALIGA */
+body.themed[data-comp="laliga"], body.themed [data-comp="laliga"] {
+  --bg: #ff4b44; --panel: #ffffff; --panel-strong: #fff2f1; --line: #ffd3d0; --line-bright: #ffb3ae;
+  --text: #121212; --muted: #5a3a38; --muted-2: #8c6c6a; --accent: #121212; --accent-ink: #ff4b44;
+  --chrome-bg: rgba(255, 75, 68, .97); --chrome-text: #ffffff; --chrome-line: #ff8a85;
+  --font-display: "Archivo", var(--font-sans); --display-weight: 800; --display-stretch: 125%;
+  --display-tracking: -0.02em; --display-transform: uppercase;
+  --z-ucl: #121212; --z-ucl-q: #5a5a5a; --z-uel: #1e5bff; --z-uecl: #00a878; --z-relegation: #ff4b44; --z-rel-po: #ffb3ae;
+}
+body.themed[data-comp="laliga"] .eyebrow, body.themed [data-comp="laliga"] .eyebrow { color: #ffffff; }
+body.themed[data-comp="laliga"] .comp-title, body.themed [data-comp="laliga"] .comp-title { color: #ffffff; }
+body.themed[data-comp="laliga"] .comp-status, body.themed [data-comp="laliga"] .comp-status { color: #ffe1df; }
+body.themed[data-comp="laliga"] .legend, body.themed [data-comp="laliga"] .legend { color: #ffe1df; }
+body.themed[data-comp="laliga"] .legend .range, body.themed [data-comp="laliga"] .legend .range { color: #ffb3ae; }
+body.themed[data-comp="laliga"] .pill { color: #ffe1df; }
+body.themed[data-comp="laliga"] .pill:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+body.themed[data-comp="laliga"] .pill.is-active { background: #121212; color: #ffffff; }
+body.themed[data-comp="laliga"] .toggle-label, body.themed[data-comp="laliga"] .header-tagline { color: #ffe1df; }
+body.themed[data-comp="laliga"] .toggle input:checked ~ .toggle-track { background: #121212; }
+body.themed[data-comp="laliga"] .brand-mark { color: #121212; }
+body.themed[data-comp="laliga"] .brand-mark .mark-fg { color: #ff4b44; }
+body.themed[data-comp="laliga"] .site-footer { color: #ffe1df; border-color: #ff8a85; }
+body.themed[data-comp="laliga"] .site-footer a, body.themed[data-comp="laliga"] kbd { color: #fff; }
+body.themed[data-comp="laliga"] .status-stale, body.themed [data-comp="laliga"] .status-stale { color: #121212; }
+body.themed [data-comp="laliga"] .refresh { color: #fff; border-color: #ffb3ae; background: transparent; }
+body.themed [data-comp="laliga"] .ded { color: #b91c1c; }
+
+/* ---------------------------------------------------------------- Ligue 1 McDonald's */
+body.themed[data-comp="ligue-1"], body.themed [data-comp="ligue-1"] {
+  --bg: #0f1a33; --panel: #16223f; --panel-strong: #1d2b4e; --line: #2a3a63; --line-bright: #3a4d7d;
+  --text: #ffffff; --muted: #c3cde6; --muted-2: #8e9cc4; --accent: #ffbc0d; --accent-ink: #0f1a33;
+  --chrome-bg: rgba(15, 26, 51, .96); --chrome-text: #ffffff; --chrome-line: #2a3a63;
+  --font-display: "Saira", var(--font-sans); --display-weight: 800; --display-tracking: -0.01em; --display-transform: uppercase;
+  --z-ucl: #ffbc0d; --z-ucl-q: #ffd766; --z-uel: #4d8dff; --z-uecl: #9bbcff; --z-relegation: #f93939; --z-rel-po: #ff8a8a;
+}
+
+/* ---------------------------------------------------------------- Bundesliga */
+body.themed[data-comp="bundesliga"], body.themed [data-comp="bundesliga"] {
+  --bg: #191917; --panel: #222220; --panel-strong: #2c2c29; --line: #383835; --line-bright: #4a4a46;
+  --text: #ffffff; --muted: #c9c9c4; --muted-2: #97978f; --accent: #d10214; --accent-ink: #ffffff;
+  --chrome-bg: rgba(25, 25, 23, .96); --chrome-text: #ffffff; --chrome-line: #383835;
+  --font-display: "Roboto Condensed", var(--font-sans); --display-weight: 800; --display-tracking: -0.01em; --display-transform: uppercase;
+  --z-relegation: #d10214; --z-rel-po: #ff6b6b;
+}
+
+/* ---------------------------------------------------------------- Serie A */
+body.themed[data-comp="serie-a"], body.themed [data-comp="serie-a"] {
+  --bg: #1a1659; --panel: #211c6b; --panel-strong: #2a247f; --line: #3a339a; --line-bright: #4c44b5;
+  --text: #ffffff; --muted: #cbc8f0; --muted-2: #9a95d6; --accent: #31ecff; --accent-ink: #1a1659;
+  --chrome-bg: rgba(26, 22, 89, .96); --chrome-text: #ffffff; --chrome-line: #3a339a;
+  --font-display: "Montserrat", var(--font-sans); --display-weight: 800; --display-tracking: -0.03em;
+  --z-ucl: #31ecff; --z-ucl-q: #8ff4ff; --z-uel: #ffb020; --z-uecl: #00d68f; --z-relegation: #ff4d6d;
+}
+
+/* ---------------------------------------------------------------- UEFA Champions League */
+body.themed[data-comp="champions-league"], body.themed [data-comp="champions-league"] {
+  --bg: #00004b; --panel: #08085c; --panel-strong: #12126f; --line: #232386; --line-bright: #3434a3;
+  --text: #ffffff; --muted: #c4c4ee; --muted-2: #9090d0; --accent: #ffffff; --accent-ink: #00004b;
+  --chrome-bg: rgba(0, 0, 75, .96); --chrome-text: #ffffff; --chrome-line: #232386;
+  --font-display: "Exo 2", var(--font-sans); --display-weight: 800; --display-tracking: .01em; --display-transform: uppercase;
+  --pill-active-filter: none;
+  --z-r16: #ffffff; --z-ko-seeded: #6aa8ff; --z-ko-unseeded: #b7d1ff; --z-eliminated: #ff5c7a;
+}
+body.themed[data-comp="champions-league"] .eyebrow, body.themed [data-comp="champions-league"] .eyebrow { color: #9fd0ff; }
+body.themed[data-comp="champions-league"] .toggle-label { color: #9fd0ff; }
+
+/* ---------------------------------------------------------------- UEFA Europa League */
+body.themed[data-comp="europa-league"], body.themed [data-comp="europa-league"] {
+  --bg: #111111; --panel: #1a1a1a; --panel-strong: #242424; --line: #303030; --line-bright: #424242;
+  --text: #ffffff; --muted: #c6c6c6; --muted-2: #8f8f8f; --accent: #ff6900; --accent-ink: #111111;
+  --chrome-bg: rgba(17, 17, 17, .96); --chrome-text: #ffffff; --chrome-line: #303030;
+  --font-display: "Nunito", var(--font-sans); --display-weight: 900; --display-tracking: -0.03em;
+  --z-r16: #ff6900; --z-ko-seeded: #ffb069; --z-ko-unseeded: #ffd9b8; --z-eliminated: #ff5c5c;
+}
+
+/* ---------------------------------------------------------------- UEFA Conference League */
+body.themed[data-comp="conference-league"], body.themed [data-comp="conference-league"] {
+  --bg: #0c0f0c; --panel: #151a15; --panel-strong: #1e251e; --line: #2b352b; --line-bright: #3b493b;
+  --text: #ffffff; --muted: #c2cdc2; --muted-2: #8b9a8b; --accent: #00be14; --accent-ink: #0c0f0c;
+  --chrome-bg: rgba(12, 15, 12, .96); --chrome-text: #ffffff; --chrome-line: #2b352b;
+  --font-display: "Chakra Petch", var(--font-sans); --display-weight: 700; --display-tracking: .01em; --display-transform: uppercase;
+  --z-r16: #00be14; --z-ko-seeded: #7ce68a; --z-ko-unseeded: #c8f5cd; --z-eliminated: #ff5c5c;
+}
